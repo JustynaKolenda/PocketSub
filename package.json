@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
+  },
   "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "date-fns": "^2.30.0",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18"
