@@ -14,7 +14,7 @@ model User {
   id           String         @id @unique
   name         String
   email        String         @unique
-  Subscription Subscription[]
+  subscription Subscription[]
 }
 
 enum SUBSCRIPTION_CURRENCY {
@@ -38,14 +38,14 @@ model Subscription {
   id                String                      @id @default(uuid())
   name              String
   price             Float
-  currency          SUBSCRIPTION_CURRENCY
-  start_date        DateTime
-  end_date          DateTime?
-  billing_period    SUBSCRIPTION_BILLING_PERIOD
-  next_payment_date DateTime
+  currency          SUBSCRIPTION_CURRENCY       @default(PLN)
+  start_date        DateTime                    @db.Date
+  end_date          DateTime?                   @db.Date
+  billing_period    SUBSCRIPTION_BILLING_PERIOD @default(MONTHLY)
+  next_payment_date DateTime                    @db.Date
   category          String
   avatar_url        String
-  status            SUBSCRIPTION_STATUS
+  status            SUBSCRIPTION_STATUS         @default(ACTIVE)
 
   ownerId  String
   owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
